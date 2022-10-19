@@ -2,6 +2,7 @@ const vm = Vue.createApp({
   data() {
     return {
       firstName: "Juan",
+      middleName: "",
       lastName: "Francisco",
       age: 19,
       url: "https://www.gabrielcmoris.com",
@@ -11,7 +12,7 @@ const vm = Vue.createApp({
   },
   methods: {
     fullName() {
-      return `${[...this.firstName].reverse().join("")} ${[
+      return `${[...this.firstName].reverse().join("")} ${this.middleName} ${[
         ...this.lastName.toUpperCase(),
       ]
         .reverse()
@@ -24,6 +25,9 @@ const vm = Vue.createApp({
       //   event.preventDefault(); I use .prevent in the directive
       this.lastName = event.target.value;
       console.log(msg);
+    },
+    updateMiddleName(e) {
+      this.middleName = e.target.value;
     },
   },
 }).mount("#app");
