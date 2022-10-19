@@ -20,8 +20,10 @@ const vm = Vue.createApp({
     increment() {
       return this.age++;
     },
-    updateLastName(event) {
+    updateLastName(msg, event) {
+      //   event.preventDefault(); I use .prevent in the directive
       this.lastName = event.target.value;
+      console.log(msg);
     },
   },
 }).mount("#app");
