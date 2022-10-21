@@ -11,13 +11,6 @@ const vm = Vue.createApp({
     };
   },
   methods: {
-    fullName() {
-      return `${[...this.firstName].reverse().join("")} ${this.middleName} ${[
-        ...this.lastName.toUpperCase(),
-      ]
-        .reverse()
-        .join("")}`;
-    },
     increment() {
       return this.age++;
     },
@@ -28,6 +21,17 @@ const vm = Vue.createApp({
     },
     updateMiddleName(e) {
       this.middleName = e.target.value;
+    },
+  },
+  computed: {
+    // This should be computed to improve performance and dont be called eacht time the DOM changes
+    // Because his value is cached
+    fullName() {
+      return `${[...this.firstName].reverse().join("")} ${this.middleName} ${[
+        ...this.lastName.toUpperCase(),
+      ]
+        .reverse()
+        .join("")}`;
     },
   },
 }).mount("#app");
