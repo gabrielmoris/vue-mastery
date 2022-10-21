@@ -10,6 +10,7 @@ const vm = Vue.createApp({
         "<a href='https://www.google.com' target='_blank'>Visit Google</a>",
       isPurple: false,
       selectedColor: "",
+      size: 150,
     };
   },
   methods: {
