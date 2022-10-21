@@ -6,7 +6,21 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- This will remove the node from the DOM when mode is not 1 -->
+      <p v-if="mode == 1">Showing v-if mode = 1</p>
+      <template v-else-if="mode == 2 "
+        ><p>Bonus content</p>
+        <h3>v-else-if mode == 2</h3></template
+      >
+      <h1 v-else>v-else</h1>
+      <i v-show="mode==1">v-show</i>
+      <select v-model="mode">
+        <option value="1">v-if mode = 1</option>
+        <option value="2">v-if-else mode = 2</option>
+        <option value="3">v-else</option>
+      </select>
+    </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>

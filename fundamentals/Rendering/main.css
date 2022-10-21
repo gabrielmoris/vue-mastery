@@ -4,7 +4,8 @@ body {
 }
 select {
   display: block;
-  margin-top: 15px;
+  position: absolute;
+  top: 150px;
   font-size: 20px;
 }
 #app {
