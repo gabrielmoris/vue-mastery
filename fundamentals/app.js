@@ -8,6 +8,8 @@ const vm = Vue.createApp({
       url: "https://www.gabrielcmoris.com",
       rawHTML:
         "<a href='https://www.google.com' target='_blank'>Visit Google</a>",
+      isPurple: false,
+      selectedColor: "",
     };
   },
   methods: {
@@ -32,6 +34,17 @@ const vm = Vue.createApp({
       ]
         .reverse()
         .join("")}`;
+    },
+    circle_classes() {
+      return { purple: this.isPurple };
+    },
+  },
+  watch: {
+    //Can work async (computed can't)
+    age(newVal, oldVal) {
+      setTimeout(() => {
+        this.age = 20;
+      }, 3000);
     },
   },
 }).mount("#app");
