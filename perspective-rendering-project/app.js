@@ -5,7 +5,6 @@ let vm = Vue.createApp({
       rotateX: 0,
       rotateY: 0,
       rotateZ: 0,
-      img: "",
     };
   },
   computed: {
