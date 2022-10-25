@@ -1,3 +1,17 @@
+//SASS FEATURES
+
+h1 {
+  color: #cc3244;
+  //h1 span
+  span {
+    color: blue;
+  }
+  &:hover {
+    color: darken(#cc3244, 15%);
+  }
+}
+
+// NORMAL CSS
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
