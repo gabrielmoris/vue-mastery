@@ -1,13 +1,25 @@
 <template>
   <div>The user is {{ age }} years old.</div>
   <p>{{ ageDoubled }}</p>
-  <button @click="onClickAge()">Update Age</button>
+  <button @click="onClickAge()">Update Age $emit event</button>
+  <button @click="ageChangeFn(5)">Update Age With Callback</button>
 </template>
 
 <script>
 export default {
   name: "User",
-  props: ["age"],
+  // Props + validation(Instead of props:["age"])
+  props: {
+    age: {
+      type: [Number, String],
+      // required: true, If I put default I dont need required
+      default: 20,
+      validator(value) {
+        return value < 126;
+      },
+    },
+    ageChangeFn: Function,
+  },
   emits: ["age-change"],
   computed: {
     ageDoubled() {

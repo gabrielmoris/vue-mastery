@@ -1,7 +1,7 @@
 <template>
   <h3>Hey!</h3>
   <HelloWorld :age="age" />
-  <User :age="age" @age-change="updateAge" />
+  <User :age="age" @age-change="updateAge" :ageChangeFn="updateAgeCB" />
 </template>
 
 <script>
@@ -20,6 +20,10 @@ export default {
   },
   methods: {
     updateAge(num) {
+      this.age += num;
+    },
+    //USING CALLBACK TO CHANGE DATA FROM CHILD
+    updateAgeCB(num) {
       this.age += num;
     },
   },
