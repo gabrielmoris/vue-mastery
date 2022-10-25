@@ -1,5 +1,10 @@
-//SASS FEATURES
+// Post CSS features
+//The pluggin autoprefixer will add the same to all browsers automatically
+::placeholder {
+  color: red;
+}
 
+//SASS FEATURES
 h1 {
   color: #cc3244;
   //h1 span
