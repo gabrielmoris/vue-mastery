@@ -9,6 +9,18 @@
   <transition name="zoom" type="animation" appear>
     <p v-if="flag">Hi!</p>
   </transition>
+
+  <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    :css="false"
+  >
+    <p v-if="flag">Hi with javaScript!</p>
+  </transition>
 </template>
 
 <script>
@@ -18,6 +30,40 @@ export default {
     return {
       flag: true,
     };
+  },
+  methods: {
+    beforeEnter(e) {
+      console.log("beforeEnter event triggered", e);
+    },
+    enter(e, done) {
+      console.log("enter event triggered", e);
+      // This is a new web animation api which is faster than standard javascript animations (it is quite new)
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API
+      const animation = e.animate([{ transform: "scale3d(0,0,0)" }, {}], {
+        duration: 1000,
+      });
+      animation.onfinish = () => {
+        done();
+      };
+    },
+    afterEnter(e) {
+      console.log("afterEnter event triggered", e);
+    },
+    beforeLeave(e) {
+      console.log("beforeLeave event triggered", e);
+    },
+    leave(e, done) {
+      console.log("leave event triggered", e);
+      const animation = e.animate([{}, { transform: "scale3d(0,0,0)" }], {
+        duration: 1000,
+      });
+      animation.onfinish = () => {
+        done();
+      };
+    },
+    afterLeave(e) {
+      console.log("afterLeave event triggered", e);
+    },
   },
 };
 </script>
