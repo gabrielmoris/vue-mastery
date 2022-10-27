@@ -21,6 +21,35 @@
   >
     <p v-if="flag">Hi with javaScript!</p>
   </transition>
+  <button @click="addItem">Add Item</button>
+  <h1>With web api animations</h1>
+  <ul>
+    <transition-group name="zoom">
+      <li
+        v-for="(number, index) in numbers"
+        :key="number"
+        @click="removeItem(index)"
+      >
+        {{ number }}
+      </li>
+    </transition-group>
+  </ul>
+  <h1>With css animate library animations</h1>
+  <ul>
+    <transition-group
+      name="fade"
+      enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX"
+    >
+      <li
+        v-for="(number, index) in numbers"
+        :key="number"
+        @click="removeItem(index)"
+      >
+        {{ number }}
+      </li>
+    </transition-group>
+  </ul>
 </template>
 
 <script>
@@ -29,6 +58,7 @@ export default {
   data() {
     return {
       flag: true,
+      numbers: [1, 2, 3, 4, 5],
     };
   },
   methods: {
@@ -64,11 +94,24 @@ export default {
     afterLeave(e) {
       console.log("afterLeave event triggered", e);
     },
+    addItem() {
+      const num = Math.floor(Math.random() * 100 + 1);
+      const index = Math.floor(Math.random() * this.numbers.length);
+      this.numbers.splice(index, 0, num);
+    },
+    removeItem(index) {
+      this.numbers.splice(index, 1);
+    },
   },
 };
 </script>
 
 <style scoped>
+li {
+  font-size: 22px;
+  cursor: pointer;
+}
+
 h2 {
   width: 400px;
   padding: 20px;
@@ -102,6 +145,26 @@ h2 {
 }
 .zoom-leave-to {
   opacity: 0;
+}
+
+/* For the javaScript transition-group */
+
+.zoom-move,
+.fade-move {
+  transition: all 1s linear;
+}
+
+.zoom-leave-active,
+.fade-leave-active {
+  position: absolute;
+}
+
+.animate__flipOutX {
+  position: absolute;
+}
+
+.animate__animated {
+  animation-duration: 1.5s;
 }
 
 @keyframes zoom-in {
