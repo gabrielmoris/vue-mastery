@@ -24,13 +24,12 @@ export default {
       name: "John",
       age: 20,
     });
+    const user2 = reactive({ name: "gabriel", age: 20 });
 
     setTimeout(() => {
       user.name = "CENA";
       user2.name = "Saludos!";
     }, 3000);
-
-    const user2 = reactive({ name: "gabriel", age: 20 });
 
     return { num, increment, user, ...toRefs(user2) };
   },
