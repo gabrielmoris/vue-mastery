@@ -8,6 +8,7 @@
     <input type="text" v-model="sentence" />
     <p>Watcher V1 (Reverse): {{ reversed }}</p>
     <p>Watcher V2 (Mixes): {{ mixed }}</p>
+    <AppAlert :user="user" />
   </div>
 </template>
 
@@ -22,8 +23,10 @@ import {
   onBeforeMount,
   onMounted,
 } from "vue";
+import AppAlert from "@/components/Alert.vue";
 export default {
   name: "App",
+  components: { AppAlert },
   //after the name we put all the logic in the setup()
   setup() {
     //lifecycle functions
