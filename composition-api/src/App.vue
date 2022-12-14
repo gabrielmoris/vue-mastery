@@ -12,10 +12,28 @@
 </template>
 
 <script>
-import { ref, reactive, toRefs, watchEffect, watch, computed } from "vue";
+import {
+  ref,
+  reactive,
+  toRefs,
+  watchEffect,
+  watch,
+  computed,
+  onBeforeMount,
+  onMounted,
+} from "vue";
 export default {
   name: "App",
+  //after the name we put all the logic in the setup()
   setup() {
+    //lifecycle functions
+    onBeforeMount(() => {
+      console.log("onBeforeMount!");
+    });
+    onMounted(() => {
+      console.log("onMounted!");
+    });
+
     //User logic, I can separate now the functions and put then together with the data
     // We need to make the number reactive, that is why we use ref
     let num = ref(0);
@@ -59,6 +77,7 @@ export default {
         .join("");
     });
 
+    // Every variable or function used in the template must be returned
     return {
       num,
       increment,
