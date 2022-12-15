@@ -9,6 +9,8 @@ export default {
   //HOW to access props inside of the setup(). Using "this" doesntwork here
   // the second parameter context is equivalent to "this"
   setup(props, context) {
+    //to emit an event
+    context.emit("eventName", {});
     const flag = computed(() => {
       return props.user.name === "John";
     });
