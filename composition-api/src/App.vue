@@ -14,17 +14,11 @@
 </template>
 
 <script>
-import {
-  ref,
-  reactive,
-  toRefs,
-  watchEffect,
-  watch,
-  computed,
-  onBeforeMount,
-  onMounted,
-} from "vue";
+import { ref, reactive, toRefs, onBeforeMount, onMounted } from "vue";
 import AppAlert from "@/components/Alert.vue";
+import { useNumber } from "@/hooks/number";
+import { useSentence } from "@/hooks/sentence";
+
 export default {
   name: "App",
   components: { AppAlert },
@@ -45,18 +39,6 @@ export default {
       });
     });
 
-    //User logic, I can separate now the functions and put then together with the data
-    // We need to make the number reactive, that is why we use ref
-    let num = ref(0);
-    function increment() {
-      // to change the value of the ref, we acces by variable.value
-      num.value++;
-    }
-
-    //Computed properties//
-    const double = computed(() => {
-      return num.value * 2;
-    });
     //To make it reactive I dont use ref, i use reactive instead
     const user = reactive({
       name: "John",
@@ -69,24 +51,10 @@ export default {
       user2.name = "Saludos!";
     }, 3000);
 
-    const sentence = ref("");
-    const reversed = ref("");
-    const mixed = ref("");
-
-    // How to use watchers //
-    watchEffect(() => {
-      reversed.value = sentence.value.split("").reverse().join("");
-    });
-    //Another way to use watchers (more efficient)
-    // the square brackets are optional and allows us to watch several values
-    watch([sentence], ([newval, oldval]) => {
-      mixed.value = sentence.value
-        .split("")
-        .sort(function () {
-          return 0.5 - Math.random();
-        })
-        .join("");
-    });
+    //Here I call my hooks
+    // I still have to return them from Setup()
+    const { num, double, increment } = useNumber();
+    const { sentence, reversed, mixed, num: sentenceNum } = useSentence();
 
     // Every variable or function used in the template must be returned
     return {
@@ -99,6 +67,7 @@ export default {
       mixed,
       double,
       btn,
+      sentenceNum,
     };
   },
 };
