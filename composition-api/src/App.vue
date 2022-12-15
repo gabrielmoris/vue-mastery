@@ -9,6 +9,7 @@
     <p>Watcher V1 (Reverse): {{ reversed }}</p>
     <p>Watcher V2 (Mixes): {{ mixed }}</p>
     <AppAlert :user="user" />
+    <button type="button" ref="btn">template refs</button>
   </div>
 </template>
 
@@ -29,12 +30,19 @@ export default {
   components: { AppAlert },
   //after the name we put all the logic in the setup()
   setup() {
+    // The setup is create before "this" exists
+    //To use template Refs I do this and the variable must have the same name as the ref in template
+    // The rest of it is handled by vue, But i Can accsss only after the component is mounted()
+    const btn = ref(null);
     //lifecycle functions
     onBeforeMount(() => {
       console.log("onBeforeMount!");
     });
     onMounted(() => {
       console.log("onMounted!");
+      btn.value.addEventListener("click", () => {
+        alert("Clicked!");
+      });
     });
 
     //User logic, I can separate now the functions and put then together with the data
@@ -90,6 +98,7 @@ export default {
       reversed,
       mixed,
       double,
+      btn,
     };
   },
 };
