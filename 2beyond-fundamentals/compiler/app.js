@@ -2,7 +2,7 @@
 let vm = Vue.createApp({
   data() {
     return {
-      message: "Hello world!",
+      message: "Hello world with compiler!",
     };
   },
   template: `{{message}}`,
@@ -12,7 +12,7 @@ let vm = Vue.createApp({
 let vm2 = Vue.createApp({
   data() {
     return {
-      message: "Hello world!",
+      message: "Hello world with no compiler!",
     };
   },
   render() {
